@@ -1,0 +1,163 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Argenis Leon <argenisleon@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "servers"
+msgstr "Servers"
+
+msgid "server"
+msgstr "Server"
+
+msgid "item"
+msgstr "Item"
+
+msgid "serverName"
+msgstr "Server Name"
+
+msgid "provider"
+msgstr "Provider"
+
+msgid "created"
+msgstr "Created"
+
+msgid "delete"
+msgstr "Delete"
+
+msgid "domains"
+msgstr "Domains"
+
+msgid "domain"
+msgstr "Domain"
+
+msgid "users"
+msgstr "Users"
+
+msgid "user"
+msgstr "User"
+
+msgid "userId"
+msgstr "User Id"
+
+msgid "email"
+msgstr "Email"
+
+msgid "ftp"
+msgstr "FTP"
+
+msgid "new"
+msgstr "New"
+
+msgid "view"
+msgstr "View"
+
+msgid "group"
+msgstr "Group"
+
+msgid "id"
+msgstr "Id"
+
+msgid "client"
+msgstr "Client"
+
+msgid "password"
+msgstr "Password"
+
+msgid "port"
+msgstr "Port"
+
+msgid "cpanelSkin"
+msgstr "Cpanel Skin"
+
+msgid "list"
+msgstr "List"
+
+msgid "changeUserId"
+msgstr "Change User Id"
+
+msgid "changePassword"
+msgstr "Change Password"
+
+msgid "save"
+msgstr "Save"
+
+msgid "confirmPassword"
+msgstr "Confirm Password"
+
+msgid "addonDomain"
+msgstr "Addon Directory"
+
+msgid "userCpanelMsg"
+msgstr "User Id to access CPanel."
+
+msgid "passwordCpanelMsg"
+msgstr "Password to access CPanel."
+
+msgid "portCpanelMsg"
+msgstr "Port to access CPanel."
+
+msgid "passwordConfirmMsg"
+msgstr "Must be the same that Password."
+
+msgid "groupMsg"
+msgstr "User Access Level."
+
+msgid "emailMsg"
+msgstr "Confidential Information will be send here. Please triplecheck."
+
+# create Domain View
+msgid "domainDomainMsg"
+msgstr "Example: google.com."
+
+msgid "domainAddonMsg"
+msgstr "Addon Directory"
+
+msgid "domainServerMsg"
+msgstr "Server in which the domain is."
+
+msgid "domainUserMsg"
+msgstr "User which can administrate de domain."
+
+msgid "quota"
+msgstr "Quota"
+
+msgid "accountName"
+msgstr "Account Name"
+
+msgid "diskUsage"
+msgstr "Disk Usage"
+
+msgid "emailAccounts"
+msgstr "Email Accounts"
+
+msgid "ftpAccounts"
+msgstr "FTP Accounts"
+
+# User Login
+msgid "loginError"
+msgstr "User Id or Password incorrect. Try again."
+
+msgid "authError"
+msgstr "You don not have permission to enter this site."
+
+msgid "logout"
+msgstr "Logout"
+
+msgid "directory"
+msgstr "Directory"
+
+msgid "infoSaved"
+msgstr "Info Saved"
+
+msgid "infoInserted"
+msgstr "Info Inserted"
+
+msgid "infoDeleted"
+msgstr "Info Deleted"
+
