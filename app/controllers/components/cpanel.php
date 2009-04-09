@@ -149,7 +149,7 @@ class CpanelComponent extends Object
         ksort( $return ); // sort by address
         return $return; // return array
     }
-	function addFtp($login, $domain, $password, $quota = 0, $directory ) { // quick and dirty example of using post in my curl function
+	function addFtp($login, $domain, $password, $quota = 0, $directory) { // quick and dirty example of using post in my curl function
 		$l = $login.'_'.$domain;
         $post = "login={$l}&domain={$domain}&password={$password}&password2={$password}&quota={$quota}&homedir={$directory}";
         $doc = $this -> dom( $this -> _curl( 'ftp/doaddftp.html', $post ) );

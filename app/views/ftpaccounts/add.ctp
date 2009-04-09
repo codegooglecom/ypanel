@@ -75,7 +75,9 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('directory', array('readonly'=>'true')).$FDL,
+											$form->text('directory').$FDL.
+											$html->tag('div',$this->data['Ftpaccount']['pathdirectory'],
+											array('class'=>'quiet')),
 											array()
 										)
 									)

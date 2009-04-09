@@ -40,13 +40,13 @@ class FtpaccountsController extends AppController
 		}
 	}
 	function index($DomainId = null){
-		$emails = null;
+		$ftps = null;
 		$dm = $this->cPanelConnect($DomainId);
 		if($dm!==false){
-			$ftp = $this->Cpanel->getFTP();
-			$ftp['Domain']=$dm['Domain']['name']; 
+			$ftps = $this->Cpanel->getFTP();
+			$ftps['Domain']=$dm['Domain']['name']; 
 		}
-		$this->set('Ftps', $ftp);
+		$this->set('Ftps', $ftps);
 	}
 	function add($DomainId=null){
 		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];
@@ -59,8 +59,8 @@ class FtpaccountsController extends AppController
 											$this->data['Ftpaccount']['domain'], 
 											$this->data['Ftpaccount']['password'], 
 											$this->data['Ftpaccount']['quote'],
-											$this->data['Ftpaccount']['directory'])){
-					$this->flash('Registro Guardado.', '/ftpaccounts/index/'.$this->data['Domain']['id'], 1);
+											trim($dm['Domain']['pathdirectory'].'/'.$this->data['Ftpaccount']['directory']))){
+					$this->flash(__('infoInserted',true), '/ftpaccounts/index/'.$this->data['Domain']['id'], 1);
 				}
 				else $this->flash('Error al crear cuenta.', '/ftpaccounts/add/'.$this->data['Domain']['id'], 1);
 			//}
@@ -68,7 +68,7 @@ class FtpaccountsController extends AppController
 		else{
 			$this->data['Domain']['id'] = $dm['Domain']['id'];
 			$this->data['Ftpaccount']['domain'] = $dm['Domain']['name'];
-			$this->data['Ftpaccount']['directory'] = $dm['Domain']['pathdirectory'];
+			$this->data['Ftpaccount']['pathdirectory'] = $dm['Domain']['pathdirectory'];
 		}
 	}
 	function edit($DomainId=null, $account=null, $quote=null){
@@ -85,7 +85,7 @@ class FtpaccountsController extends AppController
 												$this->data['Ftpaccount']['domain'], 
 												$this->data['Ftpaccount']['password']);
 			if($result&&$result2){							
-			$this->flash('Cuenta Actualizada.', "/ftpaccounts/index/{$DomainId}", 1);
+			$this->flash(__('infoSaved',true), "/ftpaccounts/index/{$DomainId}", 1);
 			}
 			else $this->flash('Error al actualizar cuenta.', "/ftpaccounts/index/{$DomainId}", 1);
 		}
@@ -107,16 +107,15 @@ class FtpaccountsController extends AppController
 			$this->data['Ftpaccount']['login']=substr($account, 0, strpos($account, '@'));
 			$this->data['Ftpaccount']['name']=substr($account, 0, strpos($account, '_'));
 		}
-		
 	}
 	function delete($account=null, $DomainId=null){
 		$this->cPanelConnect($DomainId);
 		$email = substr($account, 0, strpos($account, '@'));
 		$domain = substr($account, strpos($account, '@')+1);
 		if($this->Cpanel->delFtp($email, $domain)){
-			$this->flash('Cuenta Eliminada.', "/ftpaccounts/index/{$DomainId}", 1);
+			$this->flash(__('infoDeleted',true), "/ftpaccounts/index/{$DomainId}", 1);
 		}
-		else $this->flash('Error al crear cuenta.', "/ftpaccounts/index/{$DomainId}", 1);
+		else $this->flash('Error al eliminar cuenta.', "/ftpaccounts/index/{$DomainId}", 1);
 		
 	}
 }
