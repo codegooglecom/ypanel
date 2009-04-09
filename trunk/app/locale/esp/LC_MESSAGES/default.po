@@ -1,0 +1,150 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Argenis Leon <argenisleon@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "servers"
+msgstr "Servidores"
+
+msgid "server"
+msgstr "Servidor"
+
+msgid "item"
+msgstr "Item"
+
+msgid "serverName"
+msgstr "Nombre del Servidor"
+
+msgid "provider"
+msgstr "Proveedor"
+
+msgid "created"
+msgstr "Creado"
+
+msgid "delete"
+msgstr "Eliminar"
+
+msgid "domains"
+msgstr "Dominios"
+
+msgid "domain"
+msgstr "Dominio"
+
+msgid "users"
+msgstr "Usuarios"
+
+msgid "user"
+msgstr "Usuario"
+
+msgid "userId"
+msgstr "Usuario Id"
+
+msgid "email"
+msgstr "Correo"
+
+msgid "ftp"
+msgstr "FTP"
+
+msgid "new"
+msgstr "Nuevo"
+
+msgid "view"
+msgstr "Ver"
+
+msgid "group"
+msgstr "Grupo"
+
+msgid "id"
+msgstr "Id"
+
+msgid "client"
+msgstr "Cliente"
+
+msgid "password"
+msgstr "Contrasena"
+
+msgid "port"
+msgstr "Puerto"
+
+msgid "cpanelSkin"
+msgstr "Cpanel Skin"
+
+msgid "list"
+msgstr "Lista"
+
+msgid "changeUserId"
+msgstr "Cambiar Usuario Id"
+
+msgid "changePassword"
+msgstr "Cambiar Contrasena"
+
+msgid "save"
+msgstr "Salvar"
+
+msgid "confirmPassword"
+msgstr "Confirmar Contrasena"
+
+msgid "addonDomain"
+msgstr "Addon Directorio"
+
+msgid "userCpanelMsg"
+msgstr "Usuario Id para acceder al CPanel."
+
+msgid "passwordCpanelMsg"
+msgstr "Contrasena para acceder al CPanel."
+
+msgid "portCpanelMsg"
+msgstr "Port to access CPanel."
+
+msgid "passwordConfirmMsg"
+msgstr "Debe ser igual que el campo Contrasena."
+
+msgid "groupMsg"
+msgstr "Nivel de acceso del usuario."
+
+msgid "emailMsg"
+msgstr "Informacion confidencial sera enviada a esta direccion de correo.Por favor verifique."
+
+# create Domain View
+msgid "domainDomainMsg"
+msgstr "Ejemplo: google.com."
+
+msgid "domainAddonMsg"
+msgstr "Addon Directorio"
+
+msgid "domainServerMsg"
+msgstr "Servidor en el cual se encuentra el dominio."
+
+msgid "domainUserMsg"
+msgstr "Usuario que puede administrar el dominio."
+
+#
+msgid "quota"
+msgstr "Cuota"
+
+msgid "accountName"
+msgstr "Nombre de Cuenta"
+
+msgid "diskUsage"
+msgstr "Uso de Disco"
+
+msgid "emailAccounts"
+msgstr "Cuentas de Correo"
+
+msgid "ftpAccounts"
+msgstr "Cuentas FTP"
+
+# User Login
+msgid "loginError"
+msgstr "Nombre de usuario o contraseña incorrectos. intente de nuevo."
+
+msgid "authError"
+msgstr "Usted no esta autorizado a acceder a este sitio."
+
+

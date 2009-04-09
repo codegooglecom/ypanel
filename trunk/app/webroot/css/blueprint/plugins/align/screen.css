@@ -1,0 +1,18 @@
+/* -------------------------------------------------------------- 
+  
+   screen.css
+   * Gives you some great CSS-only buttons.
+   
+   Created by Argenis Leon [kaai.com.ve]
+  
+   See Readme.txt in this folder for instructions.
+
+-------------------------------------------------------------- */
+
+.align-right{
+	text-align:right;
+}
+
+.align-left{
+	text-align:left;
+}
