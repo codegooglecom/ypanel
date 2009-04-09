@@ -10,10 +10,6 @@
 	$FDL = chr(10);
 	$TAB = chr(9);
 	
-	//e($html->link('Nuevo', "/users/add").' ');
-	//e('<br>');
-	//e($html->link('Lista', "/users"));
-	
 	//FORM
 	echo $form->create('User', array('name'=>'form1')). $FDL;
 	echo $form->input('id', array('type'=>'hidden')). $FDL;
@@ -56,8 +52,8 @@
 														),
 														array(
 															$form->text('passwordcheck', array('type'=>'password')).$FDL.
-															$html->tag('div',(__('passwordConfirmMsg',true))),
-															array('class'=>'quiet'),
+															$html->tag('div',__('passwordConfirmMsg',true),
+															array('class'=>'quiet')),
 															array()
 														)
 													)
@@ -84,8 +80,8 @@
 														),
 														array(
 															$form->select('group_id', $Group).$FDL.
-															$html->tag('div',__('groupMsg',true)),
-															array('class'=>'quiet'),
+															$html->tag('div',__('groupMsg',true),
+															array('class'=>'quiet')),
 															array()
 														)
 													)
@@ -112,7 +108,7 @@
 														),
 														array(
 															$form->text('email').$FDL.
-															$html->tag('div','(Aqui se enviara informacion confidencial al usuario. Por favor verificar que sea correcto.)'),
+															$html->tag('div',__('emailMsg',true)),
 															array('class'=>'quiet'),
 															array()
 														)

@@ -25,19 +25,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<?php echo $html->charset(); ?>
-<title><?php echo $page_title; ?></title>
-
-<?php if (Configure::read() == 0) { ?>
-<meta http-equiv="Refresh" content="<?php echo $pause; ?>;url=<?php echo $url; ?>"/>
-<?php } ?>
-<style><!--
-P { text-align:center; font:bold 1.1em sans-serif }
-A { color:#444; text-decoration:none }
-A:HOVER { text-decoration: underline; color:#44E }
---></style>
+<?=$html->charset(); ?>
+<title><?=$page_title; ?></title>
+<?
+		echo $html->css(array('blueprint/screen'), 
+						null, 
+						array('media'=>'screen,projection'));
+	 if (Configure::read() == 0) :?>
+<meta http-equiv="Refresh" content="<?=$pause;?>;url=<?=$url;?>"/>
+<?php endif;?>
 </head>
 <body>
-<p><a href="<?php echo $url; ?>"><?php echo $message; ?></a></p>
+<div class="success"><a href="<?=$url;?>"><?=$message;?></a></div>
 </body>
 </html>

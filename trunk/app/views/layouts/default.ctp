@@ -53,7 +53,7 @@
 		echo $html->css(array(
 							'blueprint/plugins/buttons/screen',
 							'blueprint/plugins/align/screen',
-							'blueprint/plugins//tabs/screen'), null, array('media'=>'screen'));
+							'blueprint/plugins/tabs/screen'), null, array('media'=>'screen'));
 		echo $html->css('blueprint/print',
 						null, 
 						array('media'=>'print'));
