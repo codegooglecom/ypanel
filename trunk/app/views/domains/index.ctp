@@ -23,7 +23,7 @@
 				<td><?=$html->link($Domain['Domain']['name'], "/domains/edit/".$Domain['Domain']['id']);?></td>
 				<td><?=$Domain['Server']['name'];?></td>
 				<td><?=$Domain['User']['username'];?></td>
-				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$Domain['Server']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), false, false);?></td>
+				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$Domain['Server']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), 'Do you want to delete this Domain?', false);?></td>
 				<td align="center"><?=$html->link(__("new",true), '/emailaccounts/add/'.$Domain['Domain']['id'], array('alt'=>'Nuevo', 'title'=>'Nuevo Correo Electrónico')).' '.$html->link(__("view",true), '/emailaccounts/index/'.$Domain['Domain']['id'], array('alt'=>'Ver', 'title'=>'Ver Correos Electrónicos'));?></td>
 				<td align="center"><?=$html->link(__("new",true), '/ftpaccounts/add/'.$Domain['Domain']['id'], array('alt'=>'Nuevo', 'title'=>'Nuevo Cuenta FTP')).' '.$html->link(__("view",true), '/ftpaccounts/index/'.$Domain['Domain']['id'], array('alt'=>'Ver', 'title'=>'Ver Cuentas FTP\'s'));?></td>
 			</tr>

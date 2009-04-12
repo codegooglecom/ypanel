@@ -69,6 +69,9 @@ msgstr "Client"
 msgid "password"
 msgstr "Password"
 
+msgid "currentPassword"
+msgstr "Current Password"
+
 msgid "port"
 msgstr "Port"
 
@@ -160,4 +163,13 @@ msgstr "Info Inserted"
 
 msgid "infoDeleted"
 msgstr "Info Deleted"
+
+msgid "errSaved"
+msgstr "Error Saving"
+
+msgid "errInserted"
+msgstr "Error Inserting"
+
+msgid "errDeleted"
+msgstr "Error Deleting"
 

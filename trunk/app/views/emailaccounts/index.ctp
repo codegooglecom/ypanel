@@ -28,7 +28,7 @@
 				<td><?=$html->link($address, "/emailaccounts/edit/{$param}/{$address}/{$data['quota']}");?></td>
 				<td><?=($data['usage']!='None')?$data['usage']:'0 Bytes';?></td>
 				<td><?=$data['quota'];?></td>
-				<td align="center"><?=$html->link($html->image('cross.png'),"delete/{$address}/{$param}", array('alt'=>'Eliminar', 'title'=>'Eliminar'), false, false);?></td>
+				<td align="center"><?=$html->link($html->image('cross.png'),"delete/{$address}/{$param}", array('alt'=>'Eliminar', 'title'=>'Eliminar'), 'Do you want to delete this Email Account?', false);?></td>
 			</tr>
 			<? 	endif;
 			endforeach;?>

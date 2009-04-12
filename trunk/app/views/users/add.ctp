@@ -108,8 +108,8 @@
 														),
 														array(
 															$form->text('email').$FDL.
-															$html->tag('div',__('emailMsg',true)),
-															array('class'=>'quiet'),
+															$html->tag('div',__('emailMsg',true),
+															array('class'=>'quiet')),
 															array()
 														)
 													)
@@ -128,7 +128,7 @@
 	, array('class'=>'span-20'))
 	, array('id'=>'text'));
 	
-
-	//FORM FIN 
+	echo $form->input('prueba');
+	//FORM FIN <div class="input text"><label for="UserPrueba">Prueba</label><input name="data[User][prueba]" type="text" value="" id="UserPrueba" /></div>
 	echo $form->end(). $FDL;
 ?>

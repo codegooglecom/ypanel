@@ -21,7 +21,7 @@
 				<td><?=$html->link($Server['Server']['name'], "/servers/edit/".$Server['Server']['id']);?></td>
 				<td><?=$Server['Server']['provider'];?></td>
 				<td><?=$Server['Server']['created'];?></td>
-				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$Server['Server']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), false, false);?></td>
+				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$Server['Server']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), 'Do you want to delete this Server?', false);?></td>
 				<td align="center"><?=$html->link(__('view',true), '/domains/index/'.$Server['Server']['id'].'/SER', array('alt'=>'Ver', 'title'=>'Ver Dominios'));?></td>
 			</tr>
 			<? endforeach;?>

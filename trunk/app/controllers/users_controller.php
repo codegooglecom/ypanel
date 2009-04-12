@@ -62,19 +62,28 @@ class UsersController extends AppController
 		$this->set('Users', $this->User->find('all', array ('recursive'=>1)));
 	}
 
-	function add()
-	{
-		if (! empty($this->data))
-		{
-			//$this->User->set($this->data);
-			//if($this->User->validates()){
-			//if($this->data['User']['password'] != $this->Auth->password($this->data['User']['passwordcheck'])){
-			//$this->flash('Las Contraseñas no son iguales.', '/users/add', 1);
-			//return;
-			//}
-			if ($this->User->save($this->data))
-			{
-				$this->flash(__('infoInserted',true), '/users', 1);
+	function add(){
+		if (! empty($this->data)){
+			$this->User->set($this->data);
+			if($this->User->validates()){
+				if($this->data['User']['password'] == $this->Auth->password($this->data['User']['passwordcheck'])){
+					if ($this->User->save($this->data))
+					{
+						$this->flash(__('infoInserted',true), '/users', 1);
+					}
+					else{
+						unset($this->data['User']['password']);
+						unset($this->data['User']['passwordcheck']);
+						$this->groupList();
+					}
+				}
+				else{
+					$this->flash('Las Contraseñas no son iguales.', '/users/add', 1);
+					$this->groupList();
+				}
+			}
+			else {
+				$this->groupList();
 			}
 		}
 		else
@@ -94,31 +103,34 @@ class UsersController extends AppController
 		{
 			if ($this->User->save($this->data))
 			{
-				$this->flash(__('infoSaved',true), '/users'.$id, 1);
+				$this->flash(__('infoSaved',true), '/users', 1);
 			}
 		}
 	}
 
 	function delete($id)
-	{
+	{	
 		$this->User->del($id);
 		$this->flash(__('infoDeleted',true), '/users', 1);
 	}
 
 	function chlogin($id = null)
 	{
-		if (! empty($this->data))
+		if (!empty($this->data))
 		{
 			if ($this->User->validates())
 			{
-				$User = $this->User->read($id);
-				if ($User['User']['password'] != $this->Auth->password($this->data['User']['passwordactual']))
+				$this->User->id = $id;
+				$User = $this->User->read();
+				
+				if ($User['User']['password'] == $this->Auth->password($this->data['User']['currentpassword']))
 				{
 					$this->User->save($this->data);
+					$this->flash(__('infoSaved',true), '/users', 1);
 				}
 				else
 				{
-					$this->flash('Las Contraseñas no son iguales.', '/users/chlogin', 1);
+					$this->flash('La Contraseña actual es incorrecta.', '/users/chlogin/'/$id, 1);
 				}
 			}
 		}
@@ -132,9 +144,20 @@ class UsersController extends AppController
 
 	function chpass($id = null)
 	{
-		if (! empty($this->data))
+		if (!empty($this->data))
 		{
-			$this->User->save($this->data);
+			$this->User->id = $id;
+			$User = $this->User->read();
+			if ($User['User']['password'] == $this->Auth->password($this->data['User']['currentpassword'])){
+				if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['confirmpassword'])){
+					$this->User->save($this->data);
+					$this->flash(__('infoSaved',true), '/users', 1);
+				}
+				else $this->flash('Las Contraseñas no son iguales.', '/users/chlogin/'/$id, 1);
+			}
+			else{
+				$this->flash('La Contraseña actual es incorrecta.', '/users/chlogin/'/$id, 1);
+			}
 		}
 		else
 		{

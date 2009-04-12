@@ -67,7 +67,10 @@ msgid "client"
 msgstr "Cliente"
 
 msgid "password"
-msgstr "Contrasena"
+msgstr "Contraseña"
+
+msgid "currentPassword"
+msgstr "Contraseña Actual"
 
 msgid "port"
 msgstr "Puerto"
@@ -82,13 +85,13 @@ msgid "changeUserId"
 msgstr "Cambiar Usuario Id"
 
 msgid "changePassword"
-msgstr "Cambiar Contrasena"
+msgstr "Cambiar Contraseña"
 
 msgid "save"
 msgstr "Salvar"
 
 msgid "confirmPassword"
-msgstr "Confirmar Contrasena"
+msgstr "Confirmar Contraseña"
 
 msgid "addonDomain"
 msgstr "Addon Directorio"
@@ -97,19 +100,19 @@ msgid "userCpanelMsg"
 msgstr "Usuario Id para acceder al CPanel."
 
 msgid "passwordCpanelMsg"
-msgstr "Contrasena para acceder al CPanel."
+msgstr "Contraseña para acceder al CPanel."
 
 msgid "portCpanelMsg"
 msgstr "Port to access CPanel."
 
 msgid "passwordConfirmMsg"
-msgstr "Debe ser igual que el campo Contrasena."
+msgstr "Debe ser igual que el campo Contraseña."
 
 msgid "groupMsg"
 msgstr "Nivel de acceso del usuario."
 
 msgid "emailMsg"
-msgstr "Informacion confidencial sera enviada a esta direccion de correo.Por favor verifique."
+msgstr "Información confidencial será enviada a esta dirección de correo.Por favor verifique."
 
 # create Domain View
 msgid "domainDomainMsg"
@@ -147,4 +150,27 @@ msgstr "Nombre de usuario o contraseña incorrectos. intente de nuevo."
 msgid "authError"
 msgstr "Usted no esta autorizado a acceder a este sitio."
 
+msgid "logout"
+msgstr "Salir"
+
+msgid "directory"
+msgstr "Directorio"
+
+msgid "infoSaved"
+msgstr "Registro Actualizado"
+
+msgid "infoInserted"
+msgstr "Registro Ingresado"
+
+msgid "infoDeleted"
+msgstr "Registro Borrado"
+
+msgid "errSaved"
+msgstr "Error Actualizando"
+
+msgid "errInserted"
+msgstr "Error Ingresando"
+
+msgid "errDeleted"
+msgstr "Error Borrando"
 
