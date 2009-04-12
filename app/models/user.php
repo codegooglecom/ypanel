@@ -22,7 +22,7 @@ class User extends AppModel
 	        return array('Group' => array('id' => $data['User']['group_id']));
 	    }
 	}
-	/*var $validate = array (
+	var $validate = array (
 						
 						'username' => array(
 									'notEmpty'=>array(
@@ -51,7 +51,7 @@ class User extends AppModel
 									)
 								
 							),
-						'passwordcheck' => array(
+						'confirmpassword' => array(
 								'notEmpty'=>array(
 								        'rule' => 'notEmpty',
 										'required' => true,
@@ -64,7 +64,7 @@ class User extends AppModel
 									)
 								
 							),
-						'passwordactual' => array(
+						'currentpassword' => array(
 								'notEmpty'=>array(
 								        'rule' => 'notEmpty',
 										'required' => true,
@@ -85,7 +85,7 @@ class User extends AppModel
 								)
 						
 					
-					);*/
+					);
 	
 	
 }

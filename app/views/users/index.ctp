@@ -15,7 +15,7 @@ e('<table id="myTable" class="tablesorter"><thead>');
 				<td><?=$User['User']['businessname'];?></td>
 				<td><?=$User['Group']['name'];?></td>
 				<td><?=$User['User']['created'];?></td>
-				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$User['User']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), false, false);?></td>
+				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$User['User']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), 'Do you want to delete this User?', false);?></td>
 				<td align="center"><?=$html->link(__('view',true), '/domains/index/'.$User['User']['id'].'/USU', array('alt'=>'Ver', 'title'=>'Ver Dominios'));?></td>
 			</tr>
 			<? endforeach;?>

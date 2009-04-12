@@ -37,7 +37,7 @@
  */
  App::import('Core', 'l10n');
 class AppController extends Controller {
-	var $helpers = array('Ajax');
+	var $helpers = array('Html','Ajax','Javascript');
 	var $components = array('Acl', 'Auth');
 
     function beforeFilter(){
