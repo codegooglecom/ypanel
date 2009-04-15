@@ -11,7 +11,7 @@
 	$TAB = chr(9);
 	
 	//FORM
-	echo $form->create('Emailaccount', array('name'=>'form1')). $FDL;
+	echo $form->create('Emailaccount', array('name'=>'form1', 'action'=>"/add/{$this->params['pass']['0']}")). $FDL;
 	e($form->input('domain_id', array('type'=>'hidden', 'value'=>$Domain['Domain']['id'])));
 	echo $html->tag('div',
 	 		$html->tag('div',
@@ -36,7 +36,9 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('name').$FDL,
+											$form->input('name', array('label'=>false, 'rows'=>2)).$FDL.
+											$html->tag('div',__('addEmailUserMsg',true),
+											array('class'=>'quiet')),
 											array()
 										)
 									)
@@ -49,7 +51,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('password', array('type'=>'password')).$FDL,
+											$form->input('passwd', array('type'=>'password', 'label'=>false)).$FDL,
 											array()
 										)
 									)

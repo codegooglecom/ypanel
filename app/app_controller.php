@@ -53,11 +53,7 @@ class AppController extends Controller {
 		$this->Auth->authorize = 'actions';
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-		
-		if($cU['User']['group_id']==1)
-			$this->Auth->loginRedirect = array('controller' => 'servers', 'action' => 'index');
-		else
-			$this->Auth->loginRedirect = array('controller' => 'domains', 'action' => 'index');
+		$this->Auth->loginRedirect = array('controller' => 'domains', 'action' => 'index');
 		$this->Auth->loginError = __('loginError',true);
 		$this->Auth->authError = __('authError',true);
     }

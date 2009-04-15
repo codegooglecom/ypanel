@@ -6,7 +6,13 @@ class FtpaccountsController extends AppController
 {
 	var $name = 'Ftpaccounts';
 	var $components = array('Cpanel');
-	var $uses = array('Server', 'Domain');
+	var $uses = array('Ftpaccount', 'Server', 'Domain');
+	
+	function beforeFilter()
+	{
+		parent::beforeFilter();
+		$this->Auth->allowedActions = array('cPanelConnect');
+	}
 	
 	function cPanelConnect($DomainId=null){
 		//e('DOMINIO: '.$DomainId);
@@ -52,8 +58,8 @@ class FtpaccountsController extends AppController
 		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];
 		$dm = $this->cPanelConnect($DoId);
 		if(!empty($this->data)){
-			//$this->Ftpaccount->set($this->data);
-			//if($this->Ftpaccount->validates()){
+			$this->Ftpaccount->set($this->data);
+			if($this->Ftpaccount->validates()){
 				//echo $this->Cpanel->Domain;
 				if($this->Cpanel->addFtp(	$this->data['Ftpaccount']['name'], 
 											$this->data['Ftpaccount']['domain'], 
@@ -63,7 +69,7 @@ class FtpaccountsController extends AppController
 					$this->flash(__('infoInserted',true), '/ftpaccounts/index/'.$this->data['Domain']['id'], 1);
 				}
 				else $this->flash('Error al crear cuenta.', '/ftpaccounts/add/'.$this->data['Domain']['id'], 1);
-			//}
+			}
 		}
 		else{
 			$this->data['Domain']['id'] = $dm['Domain']['id'];

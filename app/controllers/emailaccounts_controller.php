@@ -6,7 +6,13 @@ class EmailaccountsController extends AppController
 {
 	var $name = 'Emailaccounts';
 	var $components = array('Cpanel');
-	var $uses = array('Server', 'Domain');
+	var $uses = array('Emailaccount','Server', 'Domain');
+	
+	function beforeFilter()
+	{
+		parent::beforeFilter();
+		$this->Auth->allowedActions = array('cPanelConnect');
+	}
 	
 	function cPanelConnect($DomainId=null){
 		//e('DOMINIO: '.$DomainId);
@@ -53,17 +59,40 @@ class EmailaccountsController extends AppController
 		$dm = $this->cPanelConnect($DoId);
 		$this->set('Domain', $dm);
 		if(!empty($this->data)){
-			//$this->Emailaccount->set($this->data);
-			//if($this->Emailaccount->validates()){
-				//echo $this->Cpanel->Domain;
-				if($this->Cpanel->addEmail(	$this->data['Emailaccount']['name'], 
-											$this->data['Emailaccount']['domain'], 
-											$this->data['Emailaccount']['password'], 
-											$this->data['Emailaccount']['quote'])){
-					$this->flash('Registro Guardado.', '/emailaccounts/index/'.$this->data['Emailaccount']['id'], 1);
+			$this->Emailaccount->set($this->data); 
+			if($this->Emailaccount->validates()){
+				if(strpos($this->data['Emailaccount']['name'],',',0)!==false){
+					$Emails = explode(",", $this->data['Emailaccount']['name']);
+					if(count($Emails)>1){
+						foreach ($Emails as $e) {
+							$this->Cpanel->addEmail(trim($e), 
+													$this->data['Emailaccount']['domain'], 
+													$this->data['Emailaccount']['passwd'], 
+													$this->data['Emailaccount']['quote']);
+						}
+						$this->flash('Registro Guardado.', "/emailaccounts/index/{$DoId}", 1);
+					}
+					else{
+						if($this->Cpanel->addEmail(	$this->data['Emailaccount']['name'], 
+													$this->data['Emailaccount']['domain'], 
+													$this->data['Emailaccount']['passwd'], 
+													$this->data['Emailaccount']['quote'])){
+							$this->flash('Registro Guardado.', "/emailaccounts/index/{$DoId}", 1);
+						}
+						else $this->flash('Error al crear cuenta.', "/emailaccounts/add/{$DoId}", 1);
+					}
 				}
-				else $this->flash('Error al crear cuenta.', '/emailaccounts/add/'.$this->data['Emailaccount']['id'], 1);
-			//}
+				else{
+					if($this->Cpanel->addEmail(	$this->data['Emailaccount']['name'], 
+												$this->data['Emailaccount']['domain'], 
+												$this->data['Emailaccount']['passwd'], 
+												$this->data['Emailaccount']['quote'])){
+						$this->flash('Registro Guardado.', "/emailaccounts/index/{$DoId}", 1);
+					}
+					else $this->flash('Error al crear cuenta.', "/emailaccounts/add/{$DoId}", 1);
+				
+				}
+			}
 		}
 	}
 	function edit($DomainId=null, $account=null, $quote=null){

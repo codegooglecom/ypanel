@@ -9,18 +9,12 @@
 	 */
 	$FDL = chr(10);
 	$TAB = chr(9);
-	
-	//e($html->link('Nuevo', "/users/add").' ');
-	//e('<br>');
-	//e($html->link('Lista', "/users").' ');
-	
-	
+
 	//FORM
 	
 	echo $form->create('User', array('name'=>'form1')). $FDL;
 	echo $form->input('id', array('type'=>'hidden')). $FDL;
-	echo $form->input('user_id', array('type'=>'hidden')). $FDL;
-	
+	$UserName = (isset($this->data['User']['username']))?$this->data['User']['username']:$this->data['User']['user'];
 	echo $html->tag('div',
 			 		$html->tag('div',
 								'<table border="0">'.$FDL.
@@ -31,7 +25,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('username', array('readonly'=>'true')).$FDL,
+															$form->input('user', array('value'=>$UserName,'readonly'=>'true', 'label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -44,7 +38,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('businessname').$FDL,
+															$form->input('businessname', array('label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -57,7 +51,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->select('group_id', $Group).$FDL.
+															$form->input('group_id', array('options'=>$Group, 'label'=>false)).$FDL.
 															$html->tag('div','Nivel de Acceso del Usuario.'),
 															array('class'=>'quiet'),
 															array()
@@ -72,7 +66,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('telephone').$FDL,
+															$form->input('telephone', array('label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -85,7 +79,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('email').$FDL.
+															$form->input('email', array('label'=>false)).$FDL.
 															$html->tag('div','(Aqui se enviara informacion confidencial al usuario. Por favor verificar que sea correcto.)'),
 															array('class'=>'quiet'),
 															array()
@@ -93,24 +87,6 @@
 													)
 												)
 											).$FDL.
-								/*$html->tableCells(array(
-										array(
-											array(
-												$html->link('Cambio de Nombre de usuario','/users/chlogin/'.$this->data['User']['id']). $FDL,
-												array('colspan'=>'2')
-											)
-										)
-									)
-								).$FDL.
-								$html->tableCells(array(
-										array(
-											array(
-												$html->link('Cambio de contraseña','/users/chpass/'.$this->data['User']['id']). $FDL,
-												array('colspan'=>'2')
-											)
-										)
-									)
-								).$FDL.*/
 								$html->tableCells(array(
 										array(
 											array(
