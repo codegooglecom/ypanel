@@ -174,3 +174,6 @@ msgstr "Error Ingresando"
 msgid "errDeleted"
 msgstr "Error Borrando"
 
+msgid "addEmailUserMsg"
+"Ej. contactos, administracion, publicidad"
+

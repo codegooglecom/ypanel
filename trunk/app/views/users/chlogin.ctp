@@ -22,7 +22,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('currentpassword', array('type'=>'password')).$FDL,
+															$form->input('currentpassword', array('type'=>'password', 'label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -35,7 +35,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('username').$FDL,
+															$form->input('username', array('label'=>false)).$FDL,
 															array()
 														)
 													)

@@ -25,7 +25,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('username').$FDL,
+															$form->input('username', array('label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -38,7 +38,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('password', array('type'=>'password')).$FDL,
+															$form->input('passwd', array('label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -51,8 +51,23 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('passwordcheck', array('type'=>'password')).$FDL.
+															$form->input('passwordcheck', array('type'=>'password', 'label'=>false)).$FDL.
 															$html->tag('div',__('passwordConfirmMsg',true),
+															array('class'=>'quiet')),
+															array()
+														)
+													)
+												)
+											).$FDL.
+								$html->tableCells(array(
+													array(
+														array(
+															$form->label(__('group',true).':').$FDL,
+															array('width'=>'160', 'class'=>'align-right')
+														),
+														array(
+															$form->input('group_id', array('options'=>$Group, 'label'=>false)).$FDL.
+															$html->tag('div',__('groupMsg',true),
 															array('class'=>'quiet')),
 															array()
 														)
@@ -66,22 +81,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('businessname').$FDL,
-															array()
-														)
-													)
-												)
-											).$FDL.
-								$html->tableCells(array(
-													array(
-														array(
-															$form->label(__('group',true).':').$FDL,
-															array('width'=>'160', 'class'=>'align-right')
-														),
-														array(
-															$form->select('group_id', $Group).$FDL.
-															$html->tag('div',__('groupMsg',true),
-															array('class'=>'quiet')),
+															$form->input('businessname', array('label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -94,7 +94,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('telephone').$FDL,
+															$form->input('telephone', array('label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -107,7 +107,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('email').$FDL.
+															$form->input('email', array('label'=>false)).$FDL.
 															$html->tag('div',__('emailMsg',true),
 															array('class'=>'quiet')),
 															array()
@@ -127,8 +127,6 @@
 		'</table>'.$FDL
 	, array('class'=>'span-20'))
 	, array('id'=>'text'));
-	
-	echo $form->input('prueba');
-	//FORM FIN <div class="input text"><label for="UserPrueba">Prueba</label><input name="data[User][prueba]" type="text" value="" id="UserPrueba" /></div>
+	//FORM FIN
 	echo $form->end(). $FDL;
 ?>

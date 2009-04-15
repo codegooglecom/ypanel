@@ -36,7 +36,6 @@ class UsersController extends AppController
 	function groupList()
 	{
 		$cU =parent::$this->Auth->user();
-		//print_r($cU);
 		if ( isset ($cU['User']['group_id']))
 		{
 			if ($cU['User']['group_id'] != 1)
@@ -63,48 +62,41 @@ class UsersController extends AppController
 	}
 
 	function add(){
-		if (! empty($this->data)){
-			$this->User->set($this->data);
-			if($this->User->validates()){
-				if($this->data['User']['password'] == $this->Auth->password($this->data['User']['passwordcheck'])){
-					if ($this->User->save($this->data))
-					{
-						$this->flash(__('infoInserted',true), '/users', 1);
-					}
-					else{
-						unset($this->data['User']['password']);
-						unset($this->data['User']['passwordcheck']);
-						$this->groupList();
-					}
-				}
-				else{
-					$this->flash('Las Contraseñas no son iguales.', '/users/add', 1);
-					$this->groupList();
-				}
+		if (!empty($this->data)){
+			$cU = parent::$this->Auth->user();
+			$this->data['User']['user_id']= $cU['User']['id'];
+			if ($this->User->save($this->data))
+			{
+				$this->flash(__('infoInserted',true), '/users', 1);
 			}
-			else {
+			else{
+				unset($this->data['User']['passwd']);
+				unset($this->data['User']['passwordcheck']);
 				$this->groupList();
 			}
 		}
 		else
 		{
+			unset($this->data['User']['passwd']);
+			unset($this->data['User']['passwordcheck']);
 			$this->groupList();
 		}
 	}
-	function edit($id = null)
-	{
-		if ( empty($this->data))
-		{
+	function edit($id = null){
+		if(!empty($this->data)){
+			$cU = parent::$this->Auth->user();
+			$this->data['User']['user_id']= $cU['User']['id'];
+			if ($this->User->save($this->data)){
+				$this->flash(__('infoSaved',true), '/users', 1);
+			}
+			else
+				$this->groupList();
+			
+		}
+		else{
 			$this->groupList();
 			$this->User->id = $id;
 			$this->data = $this->User->read();
-		}
-		else
-		{
-			if ($this->User->save($this->data))
-			{
-				$this->flash(__('infoSaved',true), '/users', 1);
-			}
 		}
 	}
 
@@ -116,55 +108,44 @@ class UsersController extends AppController
 
 	function chlogin($id = null)
 	{
-		if (!empty($this->data))
-		{
-			if ($this->User->validates())
-			{
-				$this->User->id = $id;
-				$User = $this->User->read();
-				
-				if ($User['User']['password'] == $this->Auth->password($this->data['User']['currentpassword']))
-				{
-					$this->User->save($this->data);
-					$this->flash(__('infoSaved',true), '/users', 1);
-				}
-				else
-				{
-					$this->flash('La Contraseña actual es incorrecta.', '/users/chlogin/'/$id, 1);
-				}
+		if (!empty($this->data)){
+			$cU = parent::$this->Auth->user();
+			$this->data['User']['user_id']= $cU['User']['id'];
+			if($this->User->save($this->data)){
+				$this->flash(__('infoSaved',true), '/users', 1);
 			}
+			//else e('NO GUARDO!!!');
+			
 		}
-		else
-		{
+		else{
 			//print_r(parent::$this->Auth->user());
 			$this->User->id = $id;
 			$this->data = $this->User->read();
 		}
 	}
 
-	function chpass($id = null)
-	{
-		if (!empty($this->data))
-		{
-			$this->User->id = $id;
-			$User = $this->User->read();
-			if ($User['User']['password'] == $this->Auth->password($this->data['User']['currentpassword'])){
-				if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['confirmpassword'])){
-					$this->User->save($this->data);
-					$this->flash(__('infoSaved',true), '/users', 1);
-				}
-				else $this->flash('Las Contraseñas no son iguales.', '/users/chlogin/'/$id, 1);
+	function chpass($id = null){
+		if (!empty($this->data)){
+			$cU = parent::$this->Auth->user();
+			$this->data['User']['user_id']= $cU['User']['id'];
+			if($this->User->save($this->data)){
+				$this->flash(__('infoSaved',true), '/users', 1);
 			}
 			else{
-				$this->flash('La Contraseña actual es incorrecta.', '/users/chlogin/'/$id, 1);
+				unset($this->data['User']['passwd']);
+				unset($this->data['User']['passwordcheck']);
+				unset($this->data['User']['currentpassword']);
 			}
 		}
-		else
-		{
+		else{
 			$this->User->id = $id;
 			$this->data = $this->User->read();
 		}
 	}
+	
+	
+	
+	
 	
 	//var $components = array('Acl');
 	function actionAcl()

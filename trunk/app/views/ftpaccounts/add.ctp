@@ -7,8 +7,7 @@
 	 *      Email: snake77se@gmail.com
 	 *      Descripción: Vista de EmailAccounts.
 	 */
-	$FDL = chr(10);
-	$TAB = chr(9);
+	$FDL = chr(9).chr(10);
 	
 	//FORM
 	echo $form->create('Ftpaccount', array('name'=>'form1')). $FDL;
@@ -23,7 +22,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('domain', array('readonly'=>'true')).$FDL,
+											$form->input('domain', array('readonly'=>'true', 'label'=>false)).$FDL,
 											array()
 										)
 									)
@@ -36,7 +35,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('name').$FDL,
+											$form->input('name', array('label'=>false)).$FDL,
 											array()
 										)
 									)
@@ -49,7 +48,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('password', array('type'=>'password')).$FDL,
+											$form->input('passwd', array('type'=>'password','label'=>false)).$FDL,
 											array()
 										)
 									)
@@ -62,7 +61,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('quote', array('value'=>'100')).$form->label('Mbytes').$FDL,
+											$form->input('quote', array('value'=>'100','label'=>false)).$form->label('Mbytes').$FDL,
 											array()
 										)
 									)
@@ -75,7 +74,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('directory').$FDL.
+											$form->input('directory',array('label'=>false)).$FDL.
 											$html->tag('div',$this->data['Ftpaccount']['pathdirectory'],
 											array('class'=>'quiet')),
 											array()

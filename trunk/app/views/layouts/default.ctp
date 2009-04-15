@@ -99,10 +99,14 @@
 					<li>
 					 <?=$html->link(__("servers",true),'/servers/', array('id'=>'servers')); ?>
 					</li>
+					
+					<? 
+						endif;
+						$url = ($cU['User']['group_id']==2)?"/users/edit/{$cU['User']['id']}":'/users/';
+					?>
 					<li>
-					 <?=$html->link(__("users",true),'/users/', array('id'=>'users')); ?>
+					 <?=$html->link(__("users",true),$url, array('id'=>'users')); ?>
 					</li>
-					<? endif;?>
 					<li>
 					 <?=$html->link(__("domains",true),'/domains/', array('id'=>'domains')); ?>
 					</li>
@@ -119,7 +123,7 @@
 				
 			</div>
 			<div class="span-24 last" id="footer">
-				<a href="#">yaao.com.ve</a>
+				<a href="http://www.yaao.com.ve/">yaao.com.ve</a>
 			</div>
 			<script type="text/javascript">
 				$("ul.tabs a.selected").removeClass('selected');

@@ -173,3 +173,6 @@ msgstr "Error Inserting"
 msgid "errDeleted"
 msgstr "Error Deleting"
 
+msgid "addEmailUserMsg"
+"Ej. contactos, administracion, publicidad"
+

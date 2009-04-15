@@ -9,8 +9,9 @@
 	 */
 	
 	$FDL = chr(9).chr(10);
-	
+	$Username = (isset($this->data['User']['username']))?$this->data['User']['username']:$this->data['User']['user'];
 	echo $form->create('User', array('name'=>'form1', 'action'=>'/chpass')). $FDL;
+	echo $form->input('id', array('type'=>'hidden'));
 	echo $html->tag('div',
 			 		$html->tag('div',
 								'<table border="0">'.$FDL.
@@ -21,7 +22,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('username', array('readonly'=>'true')).$FDL,
+															$form->text('user', array('readonly'=>'true', 'value'=>$Username)).$FDL,
 															array()
 														)
 													)
@@ -34,7 +35,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('currentpassword', array('type'=>'password')).$FDL,
+															$form->input('currentpassword', array('type'=>'password', 'label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -47,7 +48,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('password', array('type'=>'password', 'value'=>'')).$FDL,
+															$form->input('passwd', array('type'=>'password', 'label'=>false)).$FDL,
 															array()
 														)
 													)
@@ -60,7 +61,7 @@
 															array('width'=>'160', 'class'=>'align-right')
 														),
 														array(
-															$form->text('confirmpassword', array('type'=>'password')).$FDL,
+															$form->input('passwordcheck', array('type'=>'password', 'label'=>false)).$FDL,
 															array()
 														)
 													)
