@@ -1,19 +1,17 @@
 <?php
 	/**
-	 *      Página: index.ctp
+	 *      Página: add.ctp
 	 *      Tipo: View
 	 *      Versión: 2009-XX-XX
 	 *      Autor: snake77se
 	 *      Email: snake77se@gmail.com
 	 *      Descripción: Vista de Domains.
 	 */
-	$FDL = chr(10);
-	$TAB = chr(9);
+	$FDL = chr(10).chr(9);
 
 	echo $form->create('Domain', array('name'=>'form1')). $FDL;
 	//INPUT's
 	echo $form->input('id', array('type'=>'hidden')). $FDL;
-	$form->input('user_id', array('type'=>'hidden')). $FDL;
 	echo $html->tag('div',
 	 		$html->tag('div',
 				'<table border="0">'.$FDL.
@@ -24,9 +22,9 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('Domain.name').$FDL.
-											$html->tag('div','Ej. yaao.com.ve'),
-											array('class'=>'quiet'),
+											$form->input('Domain.name', array('label'=>false)).$FDL.
+											$html->tag('div','Ej. yaao.com.ve',
+											array('class'=>'quiet')),
 											array()
 										)
 									)
@@ -39,9 +37,9 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('Domain.pathdirectory').$FDL.
-											$html->tag('div','Ruta del Directorio en el Servidor.'),
-											array('class'=>'quiet'),
+											$form->input('Domain.pathdirectory', array('label'=>false)).$FDL.
+											$html->tag('div','Ruta del Directorio en el Servidor.',
+											array('class'=>'quiet')),
 											array()
 										)
 									)
@@ -54,9 +52,9 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->select('Domain.server_id', $Servers).$FDL.
-											$html->tag('div','Servidor donde se encuentra el dominio.'),
-											array('class'=>'quiet'),
+											$form->input('Domain.server_id', array('options'=>$Servers, 'label'=>false, 'empty'=>true)).$FDL.
+											$html->tag('div','Servidor donde se encuentra el dominio.',
+											array('class'=>'quiet')),
 											array()
 										)
 									)
@@ -69,9 +67,65 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->select('Domain.user_id', $Users).$FDL.
-											$html->tag('div','Usuario administrador.'),
-											array('class'=>'quiet'),
+											$form->input('Domain.user_id', array('options'=>$Users, 'label'=>false, 'empty'=>true)).$FDL.
+											$html->tag('div','Usuario administrador del dominio.',
+											array('class'=>'quiet')),
+											array()
+										)
+									)
+								)
+							).$FDL.
+				$html->tableCells(array(
+									array(
+										array(
+											$form->label(__('emailsCount',true).':').$FDL,
+											array('width'=>'160', 'class'=>'align-right')
+										),
+										array(
+											$form->input('emailscount', array('label'=>false)).$FDL,
+											array()
+										)
+									)
+								)
+							).$FDL.
+				$html->tableCells(array(
+									array(
+										array(
+											$form->label(__('emailsQuote',true).':').$FDL,
+											array('width'=>'160', 'class'=>'align-right')
+										),
+										array(
+											$form->input('emailsquote', array('label'=>false)).$FDL.
+											$html->tag('div','Mbytes.',
+											array('class'=>'quiet')),
+											array()
+										)
+									)
+								)
+							).$FDL.
+				$html->tableCells(array(
+									array(
+										array(
+											$form->label(__('ftpCount',true).':').$FDL,
+											array('width'=>'160', 'class'=>'align-right')
+										),
+										array(
+											$form->input('ftpcount', array('label'=>false)).$FDL,
+											array()
+										)
+									)
+								)
+							).$FDL.
+				$html->tableCells(array(
+									array(
+										array(
+											$form->label(__('ftpQuote',true).':').$FDL,
+											array('width'=>'160', 'class'=>'align-right')
+										),
+										array(
+											$form->input('ftpquote', array('label'=>false)).$FDL.
+											$html->tag('div','Mbytes.',
+											array('class'=>'quiet')),
 											array()
 										)
 									)

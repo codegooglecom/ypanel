@@ -20,6 +20,8 @@ class ServersController extends AppController
 				$this->render('dml');
 		}
 		else {
+			$this->data['Server']['port']='2082';
+			$this->data['Server']['skin']='x';
 			$this->render('dml');
 		}
 	}

@@ -24,6 +24,8 @@ class DomainsController extends AppController
 			elseif($mod=='USU'){
 				$cond = array('Domain.user_id' => $id);
 			}
+			else
+				$cond = array();
 		}
 		$this->set('Domains', $this->Domain->find('all', array('conditions' => $cond, 'recursive' => 1)));
 	}
@@ -31,8 +33,6 @@ class DomainsController extends AppController
 		$this->set('Users', $this->User->find('list', array('fields' => array('User.id', 'User.username'))));
 		$this->set('Servers', $this->Server->find('list'));
 		if (!empty($this->data)){
-			//$cU = parent::$this->Auth->user();
-			//$this->data['Persona']['usuario_id'] = $cU['User']['id'];
 			if ($this->Domain->save($this->data)) {
 				$this->flash(__('infoInserted',true), '/domains', 1);
 			}
@@ -40,6 +40,10 @@ class DomainsController extends AppController
 				$this->render('dml');
 		}
 		else {
+			$this->data['Domain']['emailscount']=100;
+			$this->data['Domain']['emailsquote']=100;
+			$this->data['Domain']['ftpcount']=5;
+			$this->data['Domain']['ftpquote']=1000;
 			$this->data['Domain']['server_id']=$serverId;
 			$this->render('dml');
 		}

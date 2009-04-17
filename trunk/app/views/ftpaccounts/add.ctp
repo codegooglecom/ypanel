@@ -10,7 +10,7 @@
 	$FDL = chr(9).chr(10);
 	
 	//FORM
-	echo $form->create('Ftpaccount', array('name'=>'form1')). $FDL;
+	echo $form->create('Ftpaccount', array('name'=>'form1','action'=>"/add/{$this->params['pass']['0']}")). $FDL;
 	e($form->input('Domain.id', array('type'=>'hidden')));
 	echo $html->tag('div',
 	 		$html->tag('div',
@@ -61,7 +61,9 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->input('quote', array('value'=>'100','label'=>false)).$form->label('Mbytes').$FDL,
+											$form->input('quote', array('value'=>'100','label'=>false)).
+											$html->tag('div','Mbytes',
+											array('class'=>'quiet')),
 											array()
 										)
 									)

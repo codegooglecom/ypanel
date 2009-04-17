@@ -175,5 +175,15 @@ msgid "errDeleted"
 msgstr "Error Borrando"
 
 msgid "addEmailUserMsg"
-"Ej. contactos, administracion, publicidad"
+msgstr "Ej. contactos, administracion, publicidad"
 
+msgid "emailsCount"
+msgstr "Cantidad maxima de Emails"
+
+msgid "ftpCount"
+msgstr "Cantidad maxima de Cuentas FTP"
+
+# Validation
+
+msgid "validateFieldRequired"
+msgstr "Field required"
