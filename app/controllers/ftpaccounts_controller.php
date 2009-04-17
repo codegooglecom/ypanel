@@ -70,6 +70,7 @@ class FtpaccountsController extends AppController
 				}
 				else $this->flash('Error al crear cuenta.', '/ftpaccounts/add/'.$this->data['Domain']['id'], 1);
 			}
+			$this->data['Ftpaccount']['pathdirectory'] = $dm['Domain']['pathdirectory'];
 		}
 		else{
 			$this->data['Domain']['id'] = $dm['Domain']['id'];
