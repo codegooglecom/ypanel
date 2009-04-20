@@ -26,6 +26,10 @@ class EmailaccountsController extends AppController
 								'fields' => array(
 											'Domain.id',
 											'Domain.name',
+											'Domain.emailscount',
+											'Domain.emailsquote',
+											'Domain.ftpcount',
+											'Domain.ftpquote',
 											'Server.user',
 											'Server.pass',
 											'Server.port',
@@ -44,6 +48,37 @@ class EmailaccountsController extends AppController
 			return false;
 		}
 	}
+	
+	function checkAccount($DomainName){
+		$emails = $sum = $result = null;
+		$count = 0;
+		$emails = $this->Cpanel->getEmail();
+		foreach ($emails as $address => $data){
+			if(strpos ($address, '@'.$DomainName)!==false){
+				if(strpos($data['quota'], 'MB')!==false){
+					$quote = substr($data['quota'], 0, strpos($data['quota'], 'MB'));
+				}
+				elseif(strpos($data['quota'], 'KB')!==false){
+					$quote = substr($data['quota'], 0, strpos($data['quota'], 'KB'));
+					$quote = $data['quota']/1024;
+				}
+				elseif(strpos($data['quota'], 'Bytes')!==false){
+					$quote = substr($data['quota'], 0, strpos($data['quota'], 'KB'));
+					$quote = $data['quota']/1048576;
+				}
+				$sum += $quote;
+				$count++;
+				//$e[] = $address;
+			}
+		}
+		$result['count'] = $count;
+		$result['quote'] = $sum;
+		//$result['emails'] = $e;
+		
+		return $result;
+		
+	}
+	
 	function index($DomainId = null){
 		$emails = null;
 		$dm = $this->cPanelConnect($DomainId);
@@ -54,17 +89,24 @@ class EmailaccountsController extends AppController
 		$this->set('Emails', $emails);
 	}
 	function add($DomainId=null){
-		$DoId = !is_null($DomainId)? $DomainId : $this->data['Emailaccount']['domain_id'];
+		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];
 		//e($DoId);
+		
 		$dm = $this->cPanelConnect($DoId);
 		$this->set('Domain', $dm);
+		$AccCheck = $this->checkAccount($dm['Domain']['name']);
+		$this->set('AccCheck', $AccCheck);
 		if(!empty($this->data)){
 			$this->Emailaccount->set($this->data); 
 			if($this->Emailaccount->validates()){
 				if(strpos($this->data['Emailaccount']['name'],',',0)!==false){
 					$Emails = explode(",", $this->data['Emailaccount']['name']);
-					if(count($Emails)>1){
+					if(count($Emails)>1){//SI ES UN ARREGLO DE CORREOS
+						$count = 1;
 						foreach ($Emails as $e) {
+							if(($AccCheck['count']+$count) < $dm['Domain']['emailscount']){//SI NO SOBRE PASA EL LIMITE DE CONTIDAD CORREOS
+								break;
+							}
 							$this->Cpanel->addEmail(trim($e), 
 													$this->data['Emailaccount']['domain'], 
 													$this->data['Emailaccount']['passwd'], 
@@ -90,9 +132,11 @@ class EmailaccountsController extends AppController
 						$this->flash('Registro Guardado.', "/emailaccounts/index/{$DoId}", 1);
 					}
 					else $this->flash('Error al crear cuenta.', "/emailaccounts/add/{$DoId}", 1);
-				
 				}
 			}
+		}
+		else{
+			$this->data['Emailaccount']['quote']= $dm['Domain']['emailsquote'];
 		}
 	}
 	function edit($DomainId=null, $account=null, $quote=null){

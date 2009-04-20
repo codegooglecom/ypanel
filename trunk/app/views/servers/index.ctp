@@ -12,7 +12,16 @@
 <?php
 	
 	e('<table id="myTable" class="tablesorter"><thead>');
-	e($html->tableHeaders(array(__('item',true),__('server',true),__('provider',true), __('created',true), __('delete',true), __('domains',true))));
+	e($html->tableHeaders(array(__('item',true),
+								__('server',true),
+								__('provider',true),
+								__('created',true), 
+								__('delete',true), 
+								__('domains',true),
+								__('backups',true)
+								)
+							)
+						);
 	e('</thead><tbody>'); 
 			$cont = 1;
 			foreach ($Servers as $Server):?>
@@ -23,6 +32,8 @@
 				<td><?=$Server['Server']['created'];?></td>
 				<td align="center"><?=$html->link($html->image('cross.png'),'delete/'.$Server['Server']['id'], array('alt'=>'Eliminar', 'title'=>'Eliminar'), 'Do you want to delete this Server?', false);?></td>
 				<td align="center"><?=$html->link(__('view',true), '/domains/index/'.$Server['Server']['id'].'/SER', array('alt'=>'Ver', 'title'=>'Ver Dominios'));?></td>
+				<td align="center"><?=$html->link(__('new',true), '/backups/add',array('alt'=>'Nuevo', 'title'=>'nuevo Backup')).' '.
+				 						$html->link(__('view',true), "/backups/index/{$Server['Server']['id']}",array('alt'=>'Ver', 'title'=>'Ver Backup'));?></td>
 			</tr>
 			<? endforeach;?>
 			</tbody>
