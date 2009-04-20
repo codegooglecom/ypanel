@@ -174,6 +174,39 @@ class CpanelComponent extends Object
 		if( $details = $doc -> getElementById( 'details' ) ) return false;
 		else return true;
 	}
+	/*FUNCTION FOR BACKUP's
+     * 
+     * 
+     */
+	function getBackups(){
+		$return = null;
+		//http://kaaiweb.com:2082/frontend/bluehost/backup/fullbackup.html
+		$doc = $this -> dom( $this -> _curl( 'backup/fullbackup.html' ) );
+        $content = $doc -> getElementById( 'content' );
+		foreach ($content->childNodes as $nodos) {
+			if($nodos->nodeName=='div' && $nodos->attributes->item(0)->name=='class' && $nodos->attributes->item(0)->value=='body-content'){
+				foreach ($nodos->childNodes as $nodo) {
+					if($nodo->nodeName=='div' && $nodo->attributes->item(0)->name=='class' && $nodo->attributes->item(0)->value=='okmsg'){
+						$b = $nodo->childNodes->item(0);//<b></b>
+						$a = $b->childNodes->item(0);//<a href=""></a>
+						$aAttr = $a->attributes->item(0);//href=""
+						$backup = &$return[$a->nodeValue];
+						$backup['href'] = $this->url.substr($aAttr->value,1);
+					}
+				}
+			}
+		}
+		return $return;
+	}
+	
+	function addBackup($email){//dest=homedir email=ejemplo@host.com
+		$post="dest=homedir&email={$email}";
+		$doc = $this -> dom( $this -> _curl( 'ftp/dopasswdftp.html', $post ) );
+		if( $details = $doc -> getElementById( 'details' ) ) return false;
+		else return true;
+	}
+	
+	
 }
 
 ?>

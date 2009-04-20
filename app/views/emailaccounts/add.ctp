@@ -7,16 +7,24 @@
 	 *      Email: snake77se@gmail.com
 	 *      Descripción: Vista de EmailAccounts.
 	 */
-	$FDL = chr(10);
-	$TAB = chr(9);
+	$FDL = chr(10).chr(9);
 	
-	//FORM
-	echo $form->create('Emailaccount', array('name'=>'form1', 'action'=>"/add/{$this->params['pass']['0']}")). $FDL;
-	e($form->input('domain_id', array('type'=>'hidden', 'value'=>$Domain['Domain']['id'])));
-	echo $html->tag('div',
-	 		$html->tag('div',
-				'<table border="0">'.$FDL.
-				$html->tableCells(array(
+	if($Domain['Domain']['emailscount']<=$AccCheck['count']){
+		e($html->tag('div','Cantidad de Correos excedida',array('class'=>'error')).$FDL);
+	}
+	elseif($Domain['Domain']['emailscount']*$Domain['Domain']['emailsquote']<=$AccCheck['quote']){
+		e($html->tag('div','Cuota de Correos excedida',array('class'=>'error')).$FDL);
+	}
+	else{
+		//FORM
+		echo $form->create('Emailaccount', array('name'=>'form1', 'action'=>"/add/{$this->params['pass']['0']}")). $FDL;
+		e($form->input('Domain.id', array('type'=>'hidden', 'value'=>$Domain['Domain']['id'])).$FDL);
+		e($form->input('Domain.emailsquote', array('type'=>'hidden', 'value'=>$Domain['Domain']['emailsquote'])).$FDL);
+		
+		echo $html->tag('div',
+		 		$html->tag('div',
+					'<table border="0">'.$FDL.
+					$html->tableCells(array(
 									array(
 										array(
 											$form->label('Dominio:').$FDL,
@@ -64,7 +72,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->text('quote', array('value'=>'150')).$FDL,
+											$form->input('quote', array('label'=>false)).$FDL,
 											array()
 										)
 									)
@@ -83,4 +91,5 @@
 	, array('class'=>'span-20'))
 	, array('id'=>'text'));
 	echo $form->end(). $FDL;
+	}
 ?>

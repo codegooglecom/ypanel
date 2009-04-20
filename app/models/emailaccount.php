@@ -17,17 +17,31 @@ class Emailaccount extends AppModel
 										'rule' => 'notEmpty',
 										'message'=>'La Contraseña es obligatoria.',
 										'last'=>true
-									),
+							 		),
 									'minLength'=>array(
 										'rule' => array('minLength', '6'),  
 										'message' => 'La Contraseña deben tener un largo de al menos 6 caracteres.'
 									)
 							),
 						'quote' => array(
-									'rule' => 'notEmpty',
-									'message'=>'La Cuota es obligatorio.'
+								'notEmpty'=>array(
+										'rule' => 'notEmpty',
+										'message'=>'La Cuota es obligatorio.'
+									),
+								'validatequote' => array(
+										'rule'=>'validatequote',
+										//'rule'=>array('range', 0, $this->data['Emailaccount']['emailsquote']),
+										'message'=>'La quota se ha excedido a su limite establecido.'
+									)
 							)
 					);
+					
+	function validatequote($data){
+        if($this->data['Domain']['emailsquote'] < $data ){
+        	return false;
+        }
+		else return true;
+	}
 	
 }
 
