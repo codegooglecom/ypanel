@@ -37,7 +37,7 @@ class Emailaccount extends AppModel
 					);
 					
 	function validatequote($data){
-        if($this->data['Domain']['emailsquote'] < $data ){
+        if($this->data['Domain']['emailsquote'] < $data['quote'] ){
         	return false;
         }
 		else return true;
