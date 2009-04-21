@@ -33,6 +33,19 @@
 				$html->tableCells(array(
 									array(
 										array(
+											$form->label(__('email',true).':').$FDL,
+											array('width'=>'160', 'class'=>'align-right')
+										),
+										array(
+											$form->input('email', array('label'=>false)).$FDL,
+											array()
+										)
+									)
+								)
+							).$FDL.
+				$html->tableCells(array(
+									array(
+										array(
 											$form->label(__('domain',true).':').$FDL,
 											array('width'=>'160', 'class'=>'align-right')
 										),

@@ -17,7 +17,7 @@ class UsersController extends AppController
 	function beforeFilter()
 	{
 		parent::beforeFilter();
-		$this->Auth->allowedActions = array('login','logout', 'groupList', 'buildAcl');
+		$this->Auth->allowedActions = array('login','logout', 'groupList', 'buildAcl', 'actionAcl');
 	}
 
 	function login()
@@ -192,27 +192,24 @@ class UsersController extends AppController
 			$aro->save($data);
 		}*/
 	
-		/*$groups = array(
-		 0=>array('alias'=>'documentos', 'model'=>'Documento'),
-		 1=>array('alias'=>'personas', 'model'=>'Persona'),
-		 2=>array('alias'=>'users', 'model'=>'User'),
-		 3=>array('alias'=>'entes', 'model'=>'Ente'),
-		 4=>array('alias'=>'entidades', 'model'=>'Entidade'),
-		 5=>array('alias'=>'entidadtipos', 'model'=>'Entidadtipo'),
-		 5=>array('alias'=>'groups', 'model'=>'Group')
+		$groups = array(
+		 0=>array('alias'=>'add', 'parent_id'=>'39'),
+		 1=>array('alias'=>'index', 'parent_id'=>'39'),
+		 2=>array('alias'=>'cPanelConnect', 'parent_id'=>'39'),
+		 3=>array('alias'=>'downloadBackup', 'parent_id'=>'39')
 		 );
 		 
 		 foreach($groups as $data){
 		 $aco->create();
 		 $aco->save($data);
 		 }
-		 */
+		 /*
 		 $this->Acl->allow('SuperAdministrador', 'controllers');
 		 
 		 $this->Acl->deny('Administradores', 'controllers');
 		 $this->Acl->allow('Administradores', 'controllers/Domains');
 		 $this->Acl->allow('Administradores', 'controllers/Emailaccounts');
-		 $this->Acl->allow('Administradores', 'controllers/Ftpaccounts');
+		 $this->Acl->allow('Administradores', 'controllers/Ftpaccounts');*/
 		 
 	}
 

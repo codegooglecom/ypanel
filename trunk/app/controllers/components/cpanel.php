@@ -51,7 +51,15 @@ class CpanelComponent extends Object
 	}
     
     private function _curl( $url = '', $post = false ) { // returns html contents of a cpanel path or exits if status is not OK
-        $url=$this->url.$url;
+    	e($url);
+    	if(strpos($url,'download')===false){
+    		$url=$this->url.$url;
+    	}
+		else{
+			
+			$url=substr($this->url, 0, strpos($this->url,'frontend')).$url;
+		}
+        
 		//e($url);
         $ch = curl_init( );
         $op = array(
@@ -191,7 +199,12 @@ class CpanelComponent extends Object
 						$a = $b->childNodes->item(0);//<a href=""></a>
 						$aAttr = $a->attributes->item(0);//href=""
 						$backup = &$return[$a->nodeValue];
-						$backup['href'] = $this->url.substr($aAttr->value,1);
+						$backup['href'] = substr($aAttr->value,1);
+						$backup['type'] = 'link';
+					}
+					elseif($nodo->nodeName=='div' && $nodo->attributes->item(0)->name=='class' && $nodo->attributes->item(0)->value=='warningmsg'){
+						$backup = &$return[$nodo->nodeValue];
+						$backup['type'] = 'text';
 					}
 				}
 			}
@@ -201,10 +214,15 @@ class CpanelComponent extends Object
 	
 	function addBackup($email){//dest=homedir email=ejemplo@host.com
 		$post="dest=homedir&email={$email}";
-		$doc = $this -> dom( $this -> _curl( 'ftp/dopasswdftp.html', $post ) );
+		$doc = $this -> dom( $this -> _curl( 'backup/dofullbackup.html', $post ) );
 		if( $details = $doc -> getElementById( 'details' ) ) return false;
 		else return true;
 	}
+	
+	function downloadBackup($url){
+		$this -> _curl( $url );
+	}
+	
 	
 	
 }

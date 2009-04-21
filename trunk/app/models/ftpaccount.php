@@ -24,10 +24,24 @@ class Ftpaccount extends AppModel
 									)
 							),
 						'quote' => array(
-									'rule' => 'notEmpty',
-									'message'=>'La Cuota es obligatorio.'
+									'notEmpty'=>array(
+										'rule' => 'notEmpty',
+										'message'=>'La Cuota es obligatorio.'
+									),
+								'validatequote' => array(
+										'rule'=>'validatequote',
+										//'rule'=>array('range', 0, $this->data['Emailaccount']['emailsquote']),
+										'message'=>'La quota se ha excedido a su limite establecido.'
+									)
 							)
 					);
+					
+		function validatequote($data){
+        if($this->data['Domain']['ftpquote'] < $data ){
+        	return false;
+        }
+		else return true;
+	}
 }
 
 ?>
