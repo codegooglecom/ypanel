@@ -30,14 +30,15 @@ class Ftpaccount extends AppModel
 									),
 								'validatequote' => array(
 										'rule'=>'validatequote',
-										//'rule'=>array('range', 0, $this->data['Emailaccount']['emailsquote']),
 										'message'=>'La quota se ha excedido a su limite establecido.'
 									)
 							)
 					);
 					
-		function validatequote($data){
-        if($this->data['Domain']['ftpquote'] < $data ){
+	function validatequote($data){
+		//echo $this->data['Domain']['ftpquote']."<br />";
+		//print_r($data);
+        if($this->data['Domain']['ftpquote'] < $data['quote']){
         	return false;
         }
 		else return true;

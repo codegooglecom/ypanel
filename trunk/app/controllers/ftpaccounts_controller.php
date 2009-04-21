@@ -91,13 +91,16 @@ class FtpaccountsController extends AppController
 	function add($DomainId=null){
 		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];
 		$dm = $this->cPanelConnect($DoId);
+		$this->set('Domain', $dm);
+		$AccCheck = $this->checkAccount($dm['Domain']['name']);
+		$this->set('AccCheck', $AccCheck);
 		if(!empty($this->data)){
 			$this->Ftpaccount->set($this->data);
 			if($this->Ftpaccount->validates()){
 				//echo $this->Cpanel->Domain;
 				if($this->Cpanel->addFtp(	$this->data['Ftpaccount']['name'], 
 											$this->data['Ftpaccount']['domain'], 
-											$this->data['Ftpaccount']['password'], 
+											$this->data['Ftpaccount']['passwd'], 
 											$this->data['Ftpaccount']['quote'],
 											trim($dm['Domain']['pathdirectory'].'/'.$this->data['Ftpaccount']['directory']))){
 					$this->flash(__('infoInserted',true), '/ftpaccounts/index/'.$this->data['Domain']['id'], 1);
@@ -109,6 +112,7 @@ class FtpaccountsController extends AppController
 		else{
 			$this->data['Domain']['id'] = $dm['Domain']['id'];
 			$this->data['Ftpaccount']['domain'] = $dm['Domain']['name'];
+			$this->data['Ftpaccount']['quote'] = $dm['Domain']['ftpquote'];
 			$this->data['Ftpaccount']['pathdirectory'] = $dm['Domain']['pathdirectory'];
 		}
 	}

@@ -51,7 +51,7 @@ class CpanelComponent extends Object
 	}
     
     private function _curl( $url = '', $post = false ) { // returns html contents of a cpanel path or exits if status is not OK
-    	e($url);
+    	//e($url);
     	if(strpos($url,'download')===false){
     		$url=$this->url.$url;
     	}

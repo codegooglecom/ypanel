@@ -69,7 +69,7 @@
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(
-											$form->input('quote', array('value'=>'100','label'=>false)).
+											$form->input('quote', array('label'=>false)).
 											$html->tag('div','Mbytes',
 											array('class'=>'quiet')),
 											array()
