@@ -11,7 +11,7 @@ class FtpaccountsController extends AppController
 	function beforeFilter()
 	{
 		parent::beforeFilter();
-		$this->Auth->allowedActions = array('cPanelConnect');
+		$this->Auth->allowedActions = array('cPanelConnect', 'checkAccount');
 	}
 	
 	function cPanelConnect($DomainId=null){
@@ -26,6 +26,10 @@ class FtpaccountsController extends AppController
 								'fields' => array(
 											'Domain.id',
 											'Domain.name',
+											'Domain.emailscount',
+											'Domain.emailsquote',
+											'Domain.ftpcount',
+											'Domain.ftpquote',
 											'Domain.pathdirectory',
 											'Server.user',
 											'Server.pass',
@@ -45,6 +49,36 @@ class FtpaccountsController extends AppController
 			return false;
 		}
 	}
+	function checkAccount($DomainName){
+		$emails = $sum = $result = null;
+		$count = 0;
+		$emails = $this->Cpanel->getEmail();
+		foreach ($emails as $address => $data){
+			if(strpos ($address, '@'.$DomainName)!==false){
+				if(strpos($data['quota'], 'MB')!==false){
+					$quote = substr($data['quota'], 0, strpos($data['quota'], 'MB'));
+				}
+				elseif(strpos($data['quota'], 'KB')!==false){
+					$quote = substr($data['quota'], 0, strpos($data['quota'], 'KB'));
+					$quote = $data['quota']/1024;
+				}
+				elseif(strpos($data['quota'], 'Bytes')!==false){
+					$quote = substr($data['quota'], 0, strpos($data['quota'], 'KB'));
+					$quote = $data['quota']/1048576;
+				}
+				$sum += $quote;
+				$count++;
+				//$e[] = $address;
+			}
+		}
+		$result['count'] = $count;
+		$result['quote'] = $sum;
+		//$result['emails'] = $e;
+		
+		return $result;
+		
+	}
+	
 	function index($DomainId = null){
 		$ftps = null;
 		$dm = $this->cPanelConnect($DomainId);

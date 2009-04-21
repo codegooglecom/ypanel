@@ -22,7 +22,12 @@
 			foreach ($Backups as $Backup=>$data):?>
 			<tr>
 				<td><?=$cont++;?></td>
-				<td><a href="<?=$data['href']?>"><?=$Backup?></a></td>
+				<? if($data['type']=='link'):?>
+				<td><a href="<?=$data['href'];?>"><?=$Backup;?></a></td>
+				<td><?//=$html->link($Backup, '/backups/downloadbackup/'.$this->params['pass'][0].'/'.$data['href'],array('alt'=>'Backup{$cont}', 'title'=>'Backup{$cont}'));?></td>
+				<? else:?>
+				<td><?=$Backup?></td>
+				<? endif;?>
 			</tr>
 			<? endforeach;?>
 			</tbody>

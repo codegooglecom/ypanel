@@ -54,7 +54,8 @@ class EmailaccountsController extends AppController
 		$count = 0;
 		$emails = $this->Cpanel->getEmail();
 		foreach ($emails as $address => $data){
-			if(strpos ($address, '@'.$DomainName)!==false){
+			if(strpos(substr($address, 0, strpos($address, '@')), $Domain)!==false){
+			//if(strpos ($address, '@'.$DomainName)!==false){
 				if(strpos($data['quota'], 'MB')!==false){
 					$quote = substr($data['quota'], 0, strpos($data['quota'], 'MB'));
 				}
@@ -177,8 +178,8 @@ class EmailaccountsController extends AppController
 			$this->data['Emailaccount']['quote']=trim($quote);
 			$this->data['Emailaccount']['name']=substr($account, 0, strpos($account, '@'));
 		}
-		
 	}
+	
 	function delete($account=null, $DomainId=null){
 		$this->cPanelConnect($DomainId);
 		$email = substr($account, 0, strpos($account, '@'));

@@ -5,14 +5,22 @@
 	 *      Versión: 2009-XX-XX
 	 *      Autor: snake77se
 	 *      Email: snake77se@gmail.com
-	 *      Descripción: Vista de EmailAccounts.
+	 *      Descripción: Vista de FTP Accounts.
 	 */
 	$FDL = chr(9).chr(10);
 	
-	//FORM
-	echo $form->create('Ftpaccount', array('name'=>'form1','action'=>"/add/{$this->params['pass']['0']}")). $FDL;
-	e($form->input('Domain.id', array('type'=>'hidden')));
-	echo $html->tag('div',
+	if($Domain['Domain']['ftpcount']<=$AccCheck['count']){
+		e($html->tag('div','Cantidad de cuentas FTP excedida',array('class'=>'error')).$FDL);
+	}
+	elseif($Domain['Domain']['ftpcount']*$Domain['Domain']['ftpquote']<=$AccCheck['quote']){
+		e($html->tag('div','Cuota de cuentas FTP excedida',array('class'=>'error')).$FDL);
+	}
+	else{
+		//FORM
+		echo $form->create('Ftpaccount', array('name'=>'form1','action'=>"/add/{$this->params['pass']['0']}")). $FDL;
+		e($form->input('Domain.id', array('type'=>'hidden')));
+		e($form->input('Domain.ftpquote', array('type'=>'hidden', 'value'=>$Domain['Domain']['ftpquote'])).$FDL);
+		echo $html->tag('div',
 	 		$html->tag('div',
 				'<table border="0">'.$FDL.
 				$html->tableCells(array(
@@ -97,4 +105,5 @@
 	, array('class'=>'span-20'))
 	, array('id'=>'text'));
 	echo $form->end(). $FDL;
+	}
 ?>

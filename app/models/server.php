@@ -30,6 +30,10 @@ class Server extends AppModel
 						'port' => array(
 									'rule' => 'notEmpty',
 									'message'=>'El puerto es obligatorio.'
+								),
+						'email' => array(
+									'rule' => array('email', true),
+									'message'=>'No es una dirección valida.'
 								)
 					);
 }
