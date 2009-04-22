@@ -54,7 +54,7 @@ class EmailaccountsController extends AppController
 		$count = 0;
 		$emails = $this->Cpanel->getEmail();
 		foreach ($emails as $address => $data){
-			if(strpos(substr($address, 0, strpos($address, '@')), $Domain)!==false){
+			if(strpos(substr($address, 0, strpos($address, '@')), $DomainName)!==false){
 			//if(strpos ($address, '@'.$DomainName)!==false){
 				if(strpos($data['quota'], 'MB')!==false){
 					$quote = substr($data['quota'], 0, strpos($data['quota'], 'MB'));
@@ -98,14 +98,16 @@ class EmailaccountsController extends AppController
 		$AccCheck = $this->checkAccount($dm['Domain']['name']);
 		$this->set('AccCheck', $AccCheck);
 		if(!empty($this->data)){
+			$count = 0;
 			$this->Emailaccount->set($this->data); 
 			if($this->Emailaccount->validates()){
 				if(strpos($this->data['Emailaccount']['name'],',',0)!==false){
 					$Emails = explode(",", $this->data['Emailaccount']['name']);
-					if(count($Emails)>1){//SI ES UN ARREGLO DE CORREOS
-						$count = 1;
+					if(count($Emails)>1){//SI ES UN ARREGLO DE CORREOS\
 						foreach ($Emails as $e) {
-							if(($AccCheck['count']+$count) < $dm['Domain']['emailscount']){//SI NO SOBRE PASA EL LIMITE DE CONTIDAD CORREOS
+							//e($AccCheck['count']+($count++).'<br />');
+							//e($dm['Domain']['emailscount'].'<br />');
+							if(($AccCheck['count']+($count++)) >= $dm['Domain']['emailscount']){//SI NO SOBRE PASA EL LIMITE DE CONTIDAD CORREOS
 								break;
 							}
 							$this->Cpanel->addEmail(trim($e), 

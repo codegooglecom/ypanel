@@ -84,7 +84,8 @@
 	<body>
 		<div class="container">
 			<div id="header" class="span-24 last">
-				<div class="span-18"><h1 style="display:inline">YPanel</h1></div>
+				<!--<div class="span-18"><h1 style="display:inline">YPanel</h1></div>-->
+				<div class="span-18"><?=$html->image('yPanelLogo.png');?></div>
 				<div class='span-5 align-right'>
 					<span  style="text-align: right">
 						<?=$cU['User']['username'].' ['.$html->link(__('logout',true).']', '/users/logout', array('alt'=>'Cerrar sesión', 'title'=>'Cerrar seción'));?>

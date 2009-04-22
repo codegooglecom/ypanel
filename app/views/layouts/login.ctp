@@ -65,7 +65,7 @@
 	<body>
 		<div class="container">
 			<div id="header" class="span-24 last">
-				<h1 style="display:inline">YPanel</h1>
+				<?=$html->image('yPanelLogo.png');?>
 			</div>
 			<div class="span-24 last" id='tab-set'>
 				<?php
