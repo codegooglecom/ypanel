@@ -59,29 +59,50 @@
 						array('media'=>'print'));
 						
 		echo $javascript->link('jquery-1.3.2.min');
-		
+		echo $javascript->link('jquery.qtip-1.0.0-rc3.min');
+?>
+		<script type="text/javascript">
+			// Create the tooltips only on document load
+	           $(document).ready(function(){
+					
+					// By suppling no content attribute, the library uses each elements title attribute by default
+					$('a[href][title]').qtip({
+						content: {
+							text: false // Use each elements title attribute
+						},
+						style: 'cream' // Give it some style
+					});
+					
+					// NOTE: You can even omit all options and simply replace the regular title tooltips like so:
+					// $('#content a[href]').qtip();
+				});
+			</script>
+<?php
 		if($this->params['action']=='index'){
 			echo $html->css('themes/blue/style', 
 							null, 
 							array('media'=>'print,screen,projection'));
 			echo $javascript->link('jquery.tablesorter.min');
+			
 		?>
 			<script type="text/javascript">
-	           $(document).ready(function(){
-	                $("#myTable").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
-	            });
-	        </script>
+				$(document).ready(function(){
+					$("#myTable").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
+				});
+			</script>
 
 		<?php
 			
 		}
 		//JS
 		
+
 		
 		echo $scripts_for_layout;
 		?>
 	</head>
 	<body>
+		
 		<div class="container">
 			<div id="header" class="span-24 last">
 				<!--<div class="span-18"><h1 style="display:inline">YPanel</h1></div>-->

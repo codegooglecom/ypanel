@@ -1,13 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: ypanel 1.0\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Argenis Leon <argenisleon@gmail.com>\n"
-"Language-Team: \n"
+"Last-Translator: Yosip Curiel <yosipcuriel@gmail.com>\n"
+"Language-Team: yaao <yosipcuriel@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: VENEZUELA\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid "servers"
 msgstr "Servidores"
@@ -67,10 +70,10 @@ msgid "client"
 msgstr "Cliente"
 
 msgid "password"
-msgstr "Contraseña"
+msgstr "Contraseï¿½a"
 
 msgid "currentPassword"
-msgstr "Contraseña Actual"
+msgstr "Contraseï¿½a Actual"
 
 msgid "port"
 msgstr "Puerto"
@@ -85,13 +88,13 @@ msgid "changeUserId"
 msgstr "Cambiar Usuario Id"
 
 msgid "changePassword"
-msgstr "Cambiar Contraseña"
+msgstr "Cambiar Contraseï¿½a"
 
 msgid "save"
 msgstr "Salvar"
 
 msgid "confirmPassword"
-msgstr "Confirmar Contraseña"
+msgstr "Confirmar Contraseï¿½a"
 
 msgid "addonDomain"
 msgstr "Addon Directorio"
@@ -100,19 +103,19 @@ msgid "userCpanelMsg"
 msgstr "Usuario Id para acceder al CPanel."
 
 msgid "passwordCpanelMsg"
-msgstr "Contraseña para acceder al CPanel."
+msgstr "Contraseï¿½a para acceder al CPanel."
 
 msgid "portCpanelMsg"
 msgstr "Port to access CPanel."
 
 msgid "passwordConfirmMsg"
-msgstr "Debe ser igual que el campo Contraseña."
+msgstr "Debe ser igual que el campo Contraseï¿½a."
 
 msgid "groupMsg"
 msgstr "Nivel de acceso del usuario."
 
 msgid "emailMsg"
-msgstr "Información confidencial será enviada a esta dirección de correo.Por favor verifique."
+msgstr "Informaciï¿½n confidencial serï¿½a enviada a esta direcciï¿½n de correo.Por favor verifique."
 
 # create Domain View
 msgid "domainDomainMsg"
@@ -145,7 +148,7 @@ msgstr "Cuentas FTP"
 
 # User Login
 msgid "loginError"
-msgstr "Nombre de usuario o contraseña incorrectos. intente de nuevo."
+msgstr "Nombre de usuario o contraseï¿½a incorrectos. intente de nuevo."
 
 msgid "authError"
 msgstr "Usted no esta autorizado a acceder a este sitio."
@@ -180,10 +183,35 @@ msgstr "Ej. contactos, administracion, publicidad"
 msgid "emailsCount"
 msgstr "Cantidad maxima de Emails"
 
+msgid "emailsQuote"
+msgstr "Cuota maxima para Emails"
+
 msgid "ftpCount"
 msgstr "Cantidad maxima de Cuentas FTP"
 
-# Validation
+msgid "ftpQuote"
+msgstr "Cuota maxima para las cuentas FTP"
 
+# Validation
 msgid "validateFieldRequired"
-msgstr "Field required"
+msgstr "Campo requerido"
+
+msgid "expirationdate"
+msgstr "Fecha de Vencimiento"
+
+# Server View
+msgid "defaultPort2082"
+msgstr "(Puerto por defecto 2082.)"
+
+msgid "dns"
+msgstr "DNS"
+
+# User view
+msgid "hosting"
+msgstr "Hospedaje"
+
+msgid "domain+hosting"
+msgstr "Dominio + Hospedaje"
+
+msgid "services"
+msgstr "Servicios"

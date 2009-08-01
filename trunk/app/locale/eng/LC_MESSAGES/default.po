@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Argenis Leon <argenisleon@gmail.com>\n"
+"Last-Translator: Yosip Curiel <yosipcuriel@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -174,24 +174,40 @@ msgid "errDeleted"
 msgstr "Error Deleting"
 
 msgid "addEmailUserMsg"
-msgstr "Ej. contactos, administracion, publicidad"
+msgstr "Example, contacts, management, advertising"
 
 msgid "emailsCount"
-msgstr "Cantidad maxima de Emails"
+msgstr "Maximum number of emails"
 
 msgid "emailsQuote"
-msgstr "Cuota maxima de Cuentas de Emails"
+msgstr "Maximum Account quote Emails"
 
 msgid "ftpCount"
-msgstr "Cantidad maxima de Cuentas FTP"
+msgstr "Maximum number of Account FTP"
 
 msgid "ftpQuote"
-msgstr "Cuota maxima de Cuentas de Emails"
-
-msgid "ftpQuote"
-msgstr "Cantidad maxima de Cuentas FTP"
+msgstr "Maximum Account quote FTP"
 
 # Validation
-
 msgid "validateFieldRequired"
 msgstr "Field required"
+
+msgid "expirationdate"
+msgstr "Expiration Date"
+
+# Server View
+msgid "defaultPort2082"
+msgstr "(Default port 2082.)"
+
+msgid "dns"
+msgstr "DNS"
+
+# User view
+msgid "hosting"
+msgstr "Hosting"
+
+msgid "domain+hosting"
+msgstr "Domain + Hosting"
+
+msgid "services"
+msgstr "Services"

@@ -1,11 +1,11 @@
 <?php
 	/**
-	 *      Página: add.ctp
+	 *      Pï¿½gina: add.ctp
 	 *      Tipo: View
-	 *      Versión: 2009-XX-XX
+	 *      Versiï¿½n: 2009-XX-XX
 	 *      Autor: snake77se
 	 *      Email: snake77se@gmail.com
-	 *      Descripción: Vista de EmailAccounts.
+	 *      Descripciï¿½n: Vista de EmailAccounts.
 	 */
 	$FDL = chr(10).chr(9);
 	
@@ -55,7 +55,7 @@
 				$html->tableCells(array(
 									array(
 										array(
-											$form->label('Contraseña:').$FDL,
+											$form->label(__('password',true).':').$FDL,
 											array('width'=>'160', 'class'=>'align-right')
 										),
 										array(

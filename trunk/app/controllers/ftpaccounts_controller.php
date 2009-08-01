@@ -51,10 +51,10 @@ class FtpaccountsController extends AppController
 	}
 	function checkAccount($DomainName){
 		$emails = $sum = $result = null;
-		$count = 0;
-		$emails = $this->Cpanel->getEmail();
-		foreach ($emails as $address => $data){
-			if(strpos ($address, '@'.$DomainName)!==false){
+		$count = $sum = 0;
+		$ftps = $this->Cpanel->getFTP();
+		foreach ($ftps as $address => $data){
+			if(strpos ($address, '_'.$DomainName)!==false){
 				if(strpos($data['quota'], 'MB')!==false){
 					$quote = substr($data['quota'], 0, strpos($data['quota'], 'MB'));
 				}
@@ -88,6 +88,7 @@ class FtpaccountsController extends AppController
 		}
 		$this->set('Ftps', $ftps);
 	}
+	
 	function add($DomainId=null){
 		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];
 		$dm = $this->cPanelConnect($DoId);
@@ -115,6 +116,9 @@ class FtpaccountsController extends AppController
 			$this->data['Ftpaccount']['quote'] = $dm['Domain']['ftpquote'];
 			$this->data['Ftpaccount']['pathdirectory'] = $dm['Domain']['pathdirectory'];
 		}
+		//pr($this->data);
+		//pr($dm);
+		//pr($AccCheck);
 	}
 	function edit($DomainId=null, $account=null, $quote=null){
 		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];

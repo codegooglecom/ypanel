@@ -1,11 +1,11 @@
 <?php
 	/**
-	 *      Página: add.ctp
+	 *      Pï¿½gina: add.ctp
 	 *      Tipo: View
-	 *      Versión: 2009-XX-XX
+	 *      Versiï¿½n: 2009-XX-XX
 	 *      Autor: snake77se
 	 *      Email: snake77se@gmail.com
-	 *      Descripción: Vista de Domains.
+	 *      Descripciï¿½n: Vista de Domains.
 	 */
 	$FDL = chr(10).chr(9);
 
@@ -126,6 +126,19 @@
 											$form->input('ftpquote', array('label'=>false)).$FDL.
 											$html->tag('div','Mbytes.',
 											array('class'=>'quiet')),
+											array()
+										)
+									)
+								)
+							).$FDL.
+				$html->tableCells(array(
+									array(
+										array(
+											$form->label(__('expirationdate',true).':').$FDL,
+											array('width'=>'160', 'class'=>'align-right')
+										),
+										array(
+											$form->input('expirationdate', array('label'=>false, 'dateFormat'=>'DMY', 'type'=>'date')).$FDL,
 											array()
 										)
 									)
