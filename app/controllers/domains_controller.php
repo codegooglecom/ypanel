@@ -27,8 +27,13 @@ class DomainsController extends AppController
 			else
 				$cond = array();
 		}
-		$this->set('Domains', $this->Domain->find('all', array('conditions' => $cond, 'recursive' => 1)));
+		$domains = $this->Domain->find('all', array('conditions' => $cond, 'recursive' => 1));
+		//$this->set('countDomains', count($domains));
+		$this->set('Domains', $domains);
+		//pr($domains);
 	}
+	
+	
 	function add($serverId=null){
 		$this->set('Users', $this->User->find('list', array('fields' => array('User.id', 'User.username'))));
 		$this->set('Servers', $this->Server->find('list'));

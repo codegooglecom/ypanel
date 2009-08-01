@@ -51,17 +51,45 @@ class CpanelComponent extends Object
 	}
     
     private function _curl( $url = '', $post = false ) { // returns html contents of a cpanel path or exits if status is not OK
-    	//e($url);
 		$url=$this->url.$url;
-    	/*if(strpos($url,'download')===false){
-    		$url=$this->url.$url;
-    	}
-		else{
-			
-			$url=substr($this->url, 0, strpos($this->url,'frontend')).$url;
-		}*/
+        $ch = curl_init( );
+		$useragent="Mozilla/5.0 (Windows; U; Windows NT 6.0; es-ES; rv:1.9.0.10) Gecko/2009042316 Firefox/3.0.10 GTB5 (.NET
+ 		CLR 3.5.30729) FirePHP/0.3";
+        $op = array(
+            CURLOPT_URL => $url,
+			CURLOPT_HEADER => false,
+			CURLOPT_USERAGENT => $useragent,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_TIMEOUT_MS=>10000,
+			/*CURLOPT_HTTPHEADER => array(
+									'Authorization:Basic c25ha2U6eWFjajI0MDU=',
+									$useragent
+									),*/
+			//CURLOPT_REFERER => 'FALSE',
+            //CURLOPT_UNRESTRICTED_AUTH => true,
+			CURLOPT_USERPWD => base64_encode($this -> username . ':' . $this -> password),
+			//CURLOPT_USERPWD => $this -> username . ':' . $this -> password,
+			CURLOPT_HTTPAUTH=> CURLAUTH_BASIC ,
+            
+        );
+        //curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        if( $post ) {
+            $op[CURLOPT_POST] = true;
+            $op[CURLOPT_POSTFIELDS] = $post;
+        }
         
-		//e($url);
+        curl_setopt_array( $ch, $op );
+        $return = curl_exec( $ch );
+        $response = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+        curl_close( $ch );
+        if( $response == 200 ) return $return;
+        else die( "Failed to open <a href='{$url}'>{$url}</a><br/>Returned <a href='http://en.wikipedia.org/wiki/List_of_HTTP_status_codes'>{$response}</a> error");
+    }
+	
+	private function _curlTest( $url = '', $post = false ) { // returns html contents of a cpanel path or exits if status is not OK
+		$url=$this->url.$url;
         $ch = curl_init( );
         $op = array(
             CURLOPT_URL => $url,
@@ -79,12 +107,9 @@ class CpanelComponent extends Object
         
         curl_setopt_array( $ch, $op );
         $return = curl_exec( $ch );
-        $response = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-        curl_close( $ch );
-        
-        if( $response == 200 ) return $return;
-        else die( "Failed to open <a href='{$url}'>{$url}</a><br/>Returned <a href='http://en.wikipedia.org/wiki/List_of_HTTP_status_codes'>{$response}</a> error");
-		//else die( $this->flash('Error de conexion.', $this->params['url']['url'], 1) );
+        $response = curl_getinfo( $ch );
+		return $response;
+
     }
     
     private function dom( $html ) { // returns domdocument object from html string
@@ -98,6 +123,26 @@ class CpanelComponent extends Object
         if( is_object( $node ) ) return ( property_exists( $node, 'textContent' ) ) ? trim( $node -> textContent ) : false;
         else return false;
     }
+	
+	function connectTest($url=null){
+		if(is_null($url))$url = 'yosipcuriel.com:2082';
+		// Se crea un manejador CURL
+		$ch = curl_init($url);
+		
+		// Se establece la URL y algunas opciones
+		//curl_setopt($ch, CURLOPT_URL, $url);
+		//curl_setopt($ch, CURLOPT_HEADER, 0);
+		
+		// Se obtiene la URL indicada
+		$return = curl_exec( $ch );
+		$response = curl_getinfo( $ch );
+		// Se cierra el recurso CURL y se liberan los recursos del sistema
+		curl_close($ch);
+		//return $this -> _curlTest( $url );
+		return $response;
+	}
+	
+	
     /*FUNCTION FOR EMAILS ACCOUNTS
      * 
      * 
@@ -149,10 +194,10 @@ class CpanelComponent extends Object
 		//e($table);
         foreach( $table -> getElementsByTagName( 'tr' ) as $row ) {
             if( $address = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 0 ) ) ) {
-                $email = &$return[$address];
-				$email['directory'] = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 2 ) );
-                $email['usage'] = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 3 ) );
-                $email['quota'] = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 4 ) );
+                $ftp = &$return[$address];
+				$ftp['directory'] = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 2 ) );
+                $ftp['usage'] = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 3 ) );
+                $ftp['quota'] = $this -> textify( $row -> getElementsByTagName( 'td' ) -> item( 4 ) );
             }
         }
         ksort( $return ); // sort by address

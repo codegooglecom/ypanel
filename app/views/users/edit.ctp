@@ -1,11 +1,11 @@
 <?php
 	/**
-	 *      Página: edit.ctp
+	 *      Pï¿½gina: edit.ctp
 	 *      Tipo: View
-	 *      Versión: 2009-XX-XX
+	 *      Versiï¿½n: 2009-XX-XX
 	 *      Autor: snake77se
 	 *      Email: snake77se@gmail.com
-	 *      Descripción: Vista de usuarios para editar.
+	 *      Descripciï¿½n: Vista de usuarios para editar.
 	 */
 	$FDL = chr(10);
 	$TAB = chr(9);
@@ -14,6 +14,29 @@
 	
 	echo $form->create('User', array('name'=>'form1')). $FDL;
 	echo $form->input('id', array('type'=>'hidden')). $FDL;
+	if($cU['User']['group_id']==1){
+		$services = $html->tableCells(array(
+													array(
+														array(
+															$form->label(__('services',true).':').$FDL,
+															array('width'=>'160', 'class'=>'align-right')
+														),
+														array(
+															$form->input('services', array(
+																						'label'=>false, 
+																						'options'=>array('D'=>__('domain', true),
+																										'H'=>__('hosting', true),
+																										'D+H'=>__('domain+hosting', true)), 
+																						'empty'=>'Seleccione...')).$FDL,
+															array()
+														)
+													)
+												)
+											).$FDL;
+	}
+	else{
+		$services = '';
+	}
 	$UserName = (isset($this->data['User']['username']))?$this->data['User']['username']:$this->data['User']['user'];
 	echo $html->tag('div',
 			 		$html->tag('div',
@@ -87,6 +110,7 @@
 													)
 												)
 											).$FDL.
+								$services.	
 								$html->tableCells(array(
 										array(
 											array(

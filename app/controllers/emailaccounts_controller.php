@@ -88,7 +88,8 @@ class EmailaccountsController extends AppController
 			$emails['Domain']=$dm['Domain']['name']; 
 		}
 		$this->set('Emails', $emails);
-	}
+	} 
+	
 	function add($DomainId=null){
 		$DoId = !is_null($DomainId)? $DomainId : $this->data['Domain']['id'];
 		//e($DoId);
@@ -138,7 +139,7 @@ class EmailaccountsController extends AppController
 				}
 			}
 		}
-		else{
+		if(empty($this->data)){
 			$this->data['Emailaccount']['quote']= $dm['Domain']['emailsquote'];
 		}
 	}

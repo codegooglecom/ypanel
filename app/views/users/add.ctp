@@ -1,11 +1,11 @@
 <?php
 	/**
-	 *      Página: index.ctp
+	 *      Pï¿½gina: index.ctp
 	 *      Tipo: View
-	 *      Versión: 2009-XX-XX
+	 *      Versiï¿½n: 2009-XX-XX
 	 *      Autor: snake77se
 	 *      Email: snake77se@gmail.com
-	 *      Descripción: Vista de usuarios.
+	 *      Descripciï¿½n: Vista de usuarios.
 	 */
 	$FDL = chr(10);
 	$TAB = chr(9);
@@ -110,6 +110,24 @@
 															$form->input('email', array('label'=>false)).$FDL.
 															$html->tag('div',__('emailMsg',true),
 															array('class'=>'quiet')),
+															array()
+														)
+													)
+												)
+											).$FDL.
+								$html->tableCells(array(
+													array(
+														array(
+															$form->label(__('services',true).':').$FDL,
+															array('width'=>'160', 'class'=>'align-right')
+														),
+														array(
+															$form->input('services', array(
+																						'label'=>false, 
+																						'options'=>array('D'=>__('domain', true),
+																										'H'=>__('hosting', true),
+																										'D+H'=>__('domain+hosting', true)), 
+																						'empty'=>'Seleccione...')).$FDL,
 															array()
 														)
 													)

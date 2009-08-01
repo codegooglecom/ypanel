@@ -43,9 +43,9 @@ class AppController extends Controller {
     function beforeFilter(){
 		// Language
 		$this->L10n = new L10n();
-    	$this->L10n->get("eng");
+    	$this->L10n->get("esp");
 		//Configure::write('Cache.disable', Configure::read('debug')); 
-		$cU=$this->Auth->user();
+		$cU = $this->Auth->user();
 		$this->set('cU', $cU);
 		//$this->set('aclParams', $this->Acl);
 		$this->Auth->actionPath = 'controllers/';
